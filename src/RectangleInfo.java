@@ -1,31 +1,32 @@
 import java.util.Scanner;
 
-public class FuelCosts {
+public class RectangleInfo {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
-        double gG = getValidDouble(in, "What is the number of gallons in the tank: ");
-        double fuelEfficiency = getValidDouble(in, "What is the fuel efficiency in miles per gallon: ");
-        double pPG = getValidDouble(in, "What is the price of gas per gallon: ");
+        double recWidth = getValidDouble(in, "Enter Rectangle Width: ");
+        double recHeight = getValidDouble(in, "Enter Rectangle Height: ");
 
-        double miles100Cost = (100 / fuelEfficiency) * pPG;
-        double totalDistance = gG * fuelEfficiency;
+        double recArea = recWidth * recHeight;
+        double perimeter = 2 * (recWidth + recHeight);
+        double recDiagonal = Math.sqrt((recWidth * recWidth) + (recHeight * recHeight));
 
-        System.out.printf("The cost to drive 100 miles: $%.2f%n", miles100Cost);
-        System.out.printf("The car can go %.2f miles with a full tank.%n", totalDistance);
+        System.out.printf("Area: %.2f%n", recArea);
+        System.out.printf("Perimeter: %.2f%n", perimeter);
+        System.out.printf("Diagonal: %.2f%n", recDiagonal);
     }
 
     public static double getValidDouble(Scanner in, String prompt) {
-        double inputValue = 0;
+        double value = 0;
         boolean isInputValid;
         String invalidInput;
 
         do {
             System.out.print(prompt);
             if (in.hasNextDouble()) {
-                inputValue = in.nextDouble();
-                in.nextLine();
-                if (inputValue > 0) {
+                value = in.nextDouble();
+                in.nextLine(); // Clear buffer
+                if (value > 0) {
                     isInputValid = true;
                 } else {
                     System.out.println("Enter a valid number.");
@@ -38,7 +39,6 @@ public class FuelCosts {
             }
         } while (!isInputValid);
 
-        return inputValue;
+        return value;
     }
 }
-
